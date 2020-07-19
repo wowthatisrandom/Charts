@@ -477,7 +477,13 @@ open class BarChartRenderer: BarLineScatterCandleBubbleRenderer
                 path.addArc(tangent1End: CGPoint(x: barRect.maxX, y: barRect.minY),
                             tangent2End: CGPoint(x: barRect.maxX, y: barRect.maxY),
                             radius: radius)
-                path.addLine(to: CGPoint(x: barRect.maxX, y: barRect.maxY))
+                path.addArc(tangent1End: CGPoint(x: barRect.maxX, y: barRect.maxY),
+                            tangent2End: CGPoint(x: barRect.minX, y: barRect.maxY),
+                            radius: radius)
+                path.addArc(tangent1End: CGPoint(x: barRect.minX, y: barRect.maxY),
+                            tangent2End: CGPoint(x: barRect.minX, y: barRect.minY),
+                            radius: radius)
+                path.addLine(to: CGPoint(x: barRect.minX, y: barRect.minY))
                 
                 context.addPath(path)
                 context.fillPath()
